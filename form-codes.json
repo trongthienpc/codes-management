@@ -1,0 +1,77 @@
+[
+  {
+    "type": "NOIKHOA.NT.BS",
+    "forms": [
+      {"formdetails":[],"templateuid":"680311191e86878fe4f42ec1","code":"HSBA.PN.KHTH.RV.01","name":"GIẤY RA VIỆN","ismultiple":false,"seq": 1},
+      {"formdetails":[],"templateuid":"67e64818f50494057599d7f6","code":"HSBA.PN.KHTH.RV.02.Vr1","name":"BẢN TÓM TẮT HỒ SƠ BỆNH ÁN","ismultiple":false,"seq": 2},
+      {"formdetails":[],"templateuid":"6746b7b887c7cb0f161cfb99","code":"PC03.KHTH.1.1.TO.1","name":"BỆNH ÁN NỘI KHOA - TỜ 1","ismultiple":false,"seq": 3},
+      {"formdetails":[],"templateuid":"6746b7bf77ac680f2e4c6d72","code":"PC03.KHTH.1.1.TO.23","name":"BỆNH ÁN NỘI KHOA - TỜ 2, 3","ismultiple":false,"seq": 4},
+      {"formdetails":[],"templateuid":"6746b7c577ac680f2e4c6e1c","code":"PC03.KHTH.1.1.TO.4","name":"BỆNH ÁN NỘI KHOA - TỜ 4","ismultiple":false,"seq": 5},
+      {"formdetails":[],"templateuid":"68340c38903842fa14cfcbb9","code":"HSBA.PN.KHTH.K&ĐT.01","name":"PHIẾU KHÁM BỆNH VÀO VIỆN (CHUNG)","ismultiple":false,"seq": 6},
+      {"formdetails":[],"templateuid":"65eea88a37a5a2b667b46097","code":"PC03.KHTH.28","name":"KẾ HOẠCH XUẤT VIỆN","ismultiple":false,"seq": 7},
+      {"formdetails":[],"templateuid":"65efd7f190da07e785fc3839","code":"PC03.KHTH.83.1","name":"ĐÁNH GIÁ BAN ĐẦU CỦA BÁC SĨ ĐA KHOA","ismultiple":false,"seq": 8},
+      {"formdetails":[],"templateuid":"66d137c132c315ab310c0ae1","code":"PC03.KHTH.90","name":"KẾ HOẠCH ĐIỀU TRỊ NỘI TRÚ","ismultiple":true,"seq": 9},
+      {"formdetails":[],"templateuid":"66c96479d508d8019e0d6058","code":"PCIH.KHTH.145","name":"PHIẾU BÀN GIAO NGƯỜI BỆNH CHUYỂN KHOA (DÀNH CHO BÁC SĨ)","ismultiple":true,"seq": 10},
+      {"formdetails":[],"templateuid":"66aa005e29269bf174ee415a","code":"PC03.KHTH.27.1","name":"PHIẾU THEO DÕI ĐIỀU TRỊ","ismultiple":true,"seq": 11},
+      {"formdetails":[],"templateuid":"65ee8e80d7aad2459cc4dedf","code":"PC03.KHTH.24.1","name":"PHIẾU ĐÁNH GIÁ TÌNH TRẠNG DINH DƯỠNG DÀNH CHO NGƯỜI BỆNH ≥18 TUỔI, KHÔNG MANG THAI","ismultiple":true,"seq": 12}
+    ]
+  },
+  {
+    "type": "NGOAIKHOA.NT.BS",
+    "forms": [
+      {"formdetails":[],"templateuid":"680311191e86878fe4f42ec1","code":"HSBA.PN.KHTH.RV.01","name":"GIẤY RA VIỆN","ismultiple":false,"seq": 1},
+      {"formdetails":[],"templateuid":"67e64818f50494057599d7f6","code":"HSBA.PN.KHTH.RV.02.Vr1","name":"BẢN TÓM TẮT HỒ SƠ BỆNH ÁN","ismultiple":false,"seq": 2},
+      {"formdetails":[],"templateuid":"6764c164b4beb27d4929d9c7","code":"PC03.KHTH.1.3.T0203","name":"BỆNH ÁN NGOẠI KHOA TỜ 0203","ismultiple":false,"seq": 3},
+      {"formdetails":[],"templateuid":"6764c1690795bc7d62843016","code":"PC03.KHTH.1.3.T04","name":"BỆNH ÁN NGOẠI KHOA TỜ 04","ismultiple":false,"seq": 4},
+      {"formdetails":[],"templateuid":"6764c1570795bc7d62842d7e","code":"PC03.KHTH.1.3.TO.1","name":"BỆNH ÁN NGOẠI KHOA TỜ 1","ismultiple":false,"seq": 5},
+      {"formdetails":[],"templateuid":"65ee81eb8598b77515f23110","code":"PC03.KHTH.13.5","name":"CAM ĐOAN CHẤP THUẬN ĐIỀU TRỊ/ PHẪU THUẬT/ THỦ THUẬT","ismultiple":true,"seq": 6},
+      {"formdetails":[],"templateuid":"68340c38903842fa14cfcbb9","code":"HSBA.PN.KHTH.K&ĐT.01","name":"PHIẾU KHÁM BỆNH VÀO VIỆN (CHUNG)","ismultiple":false,"seq": 7},
+      {"formdetails":[],"templateuid":"65eea70dbabbffb67bd0a7aa","code":"PC03.KHTH.26","name":"TRÍCH BIÊN BẢN HỘI CHẨN LIÊN KHOA","ismultiple":true,"seq": 8},
+      {"formdetails":[],"templateuid":"65eea6e251f55db66055ac5e","code":"PC03.KHTH.26.1","name":"BIÊN BẢN HỘI CHẨN","ismultiple":true,"seq": 9},
+      {"formdetails":[],"templateuid":"65eea88a37a5a2b667b46097","code":"PC03.KHTH.28","name":"KẾ HOẠCH XUẤT VIỆN","ismultiple":false,"seq": 10},
+      {"formdetails":[],"templateuid":"65efd7f190da07e785fc3839","code":"PC03.KHTH.83.1","name":"ĐÁNH GIÁ BAN ĐẦU CỦA BÁC SĨ ĐA KHOA","ismultiple":false,"seq": 11},
+      {"formdetails":[],"templateuid":"66d137c132c315ab310c0ae1","code":"PC03.KHTH.90","name":"KẾ HOẠCH ĐIỀU TRỊ NỘI TRÚ","ismultiple":true,"seq": 12},
+      {"formdetails":[],"templateuid":"66c96479d508d8019e0d6058","code":"PCIH.KHTH.145","name":"PHIẾU BÀN GIAO NGƯỜI BỆNH CHUYỂN KHOA (DÀNH CHO BÁC SĨ)","ismultiple":true,"seq": 13},
+      {"formdetails":[],"templateuid":"66aa005e29269bf174ee415a","code":"PC03.KHTH.27.1","name":"PHIẾU THEO DÕI ĐIỀU TRỊ","ismultiple":true,"seq": 14},
+      {"formdetails":[],"templateuid":"65ee8e80d7aad2459cc4dedf","code":"PC03.KHTH.24.1","name":"PHIẾU ĐÁNH GIÁ TÌNH TRẠNG DINH DƯỠNG DÀNH CHO NGƯỜI BỆNH ≥18 TUỔI, KHÔNG MANG THAI","ismultiple":true,"seq": 15}
+    ]
+  },
+  {
+    "type": "DAKHOA.NT.DD",
+    "forms": [
+      {"formdetails":[],"templateuid":"67e65657539ba8903e5c19e6","code":"HSBA.PN.KD.T&TM.01(Vr01)","name":"PHIẾU THEO DÕI THUỐC NGƯỜI BỆNH MANG VÀO","ismultiple":true,"seq": 1},
+      {"formdetails":[],"templateuid":"682beb97b4b851daa4832b66","code":"HSBA.PN.KHTH.PTTT.03","name":"BẢNG KIỂM CHUẨN BỊ VÀ BÀN GIAO NGƯỜI BỆNH TRƯỚC PHẪU THUẬT/ THỦ THUẬT","ismultiple":true,"seq": 2},
+      {"formdetails":[],"templateuid":"67f72e5949e5fb46f29c81c7","code":"HSBA.PN.KHTH.RV.09.(Vr02)","name":"BẢNG KIỂM HỒ SƠ BỆNH ÁN","ismultiple":false,"seq": 3},
+      {"formdetails":[],"templateuid":"67e502751ebde51c923f35e3","code":"HSBA.PN.PĐD.RV.03.(Vr02)","name":"BẢNG KIỂM KHÁCH HÀNG XUẤT VIỆN","ismultiple":false,"seq": 4},
+      {"formdetails":[],"templateuid":"67fc89a201fd3c48b591bdb9","code":"HSBA.PN.PĐD.T&TM.07","name":"PHIẾU THEO DÕI TRUYỀN DỊCH","ismultiple":true,"seq": 5},
+      {"formdetails":[],"templateuid":"67456acf60cf3b464dd0611f","code":"PC03.0262","name":"BẢNG SÀNG LỌC NGUY CƠ TỰ TỬ, TỰ GÂY HẠI  SƠ CẤP(PHQ -2) - THỨ CẤP (PHQ - 9)","ismultiple":false,"seq": 6},
+      {"formdetails":[],"templateuid":"6784d0b4c61e46d7946b133c","code":"PC03.KHTH.10.3.2025","name":"PHIẾU THEO DÕI VÀ CHĂM SÓC (CẤP 2-3) - ĐA KHOA, NHI","ismultiple":true,"seq": 7},
+      {"formdetails":[],"templateuid":"65eeb05151f55db66055bc5b","code":"PC03.KHTH.6.2","name":"THANG ĐIỂM ĐÁNH GIÁ NGUY CƠ TÉ NGÃ NGƯỜI TỪ 16 – 59 TUỔI","ismultiple":true,"seq": 8},
+      {"formdetails":[],"templateuid":"6614e1278148e489346622aa","code":"PC03.KHTH.7","name":"PHIẾU ĐÁNH GIÁ NHU CẦU TƯ VẤN GIÁO DỤC SỨC KHỎE VÀ KẾ HOẠCH CHĂM SÓC NGƯỜI BỆNH","ismultiple":false,"seq": 9},
+      {"formdetails":[],"templateuid":"65efd900c3ad69b197e35805","code":"PC03.KHTH.83.5","name":"BỆNH SỬ NHẬP VIỆN VÀ NHẬN ĐỊNH BAN ĐẦU CỦA ĐIỀU DƯỠNG ĐA KHOA","ismultiple":false,"seq": 10},
+      {"formdetails":[],"templateuid":"6566a95b76cf8d49031cbbe0","code":"PC03.P.DD.03","name":"THANG ĐÁNH GIÁ ĐAU VAS (VISUAL ANALOG SCALE) ÁP DỤNG NGƯỜI > 7 TUỔI","ismultiple":true,"seq": 11},
+      {"formdetails":[],"templateuid":"657042c16682d0e7a1f217f3","code":"PCIH.1026","name":"KẾ HOẠCH CHĂM SÓC","ismultiple":true,"seq": 12}
+    ]
+  },
+  {
+    "type": "DAKHOA.PK.DD",
+    "forms": [
+      {"formdetails":[],"templateuid":"6824134849f57bcb53855926","code":"HSBA.PN.GMHS.PTTT.04","name":"PHIẾU THĂM DÒ TRƯỚC GÂY MÊ (SONG NGỮ)","ismultiple":false,"seq": 1},
+      {"formdetails":[],"templateuid":"67456acf60cf3b464dd0611f","code":"PC03.0262","name":"BẢNG SÀNG LỌC NGUY CƠ TỰ TỬ, TỰ GÂY HẠI  SƠ CẤP(PHQ -2) - THỨ CẤP (PHQ - 9)","ismultiple":false,"seq": 2},
+      {"formdetails":[],"templateuid":"67034228ee7e452281b3aa6f","code":"PC03.KHTH.7.1.2024","name":"PHIẾU ĐÁNH GIÁ NHU CẦU TƯ VẤN GIÁO DỤC SỨC KHỎE - NGOẠI TRÚ","ismultiple":false,"seq": 3},
+      {"formdetails":[],"templateuid":"65781109e7c7c236e6b43155","code":"PCIH.KHTH.11.2","name":"PHIẾU BÀN GIAO NGƯỜI BỆNH KHI CHUYỂN KHOA","ismultiple":false,"seq": 4},
+      {"formdetails":[],"templateuid":"65b0dab1d234de54f0a6a21c","code":"PCIH.KHTH.6.4","name":"PHIẾU ĐÁNH GIÁ NGUY CƠ TÉ NGÃ NGƯỜI BỆNH NGOẠI TRÚ (>=16 TUỔI)","ismultiple":false,"seq": 5}
+    ]
+  },
+  {
+    "type": "DAKHOA.DC.BS",
+    "forms": [
+      {"formdetails":[],"templateuid":"67fc8c9445bd03ee2463a6f2","code":"HSBA.PN.KHTH-KKB.BA.08","name":"BỆNH ÁN NGOẠI TRÚ (CHUNG)","ismultiple":false,"seq": 1},
+      {"formdetails":[],"templateuid":"67e64818f50494057599d7f6","code":"HSBA.PN.KHTH.RV.02.Vr1","name":"BẢN TÓM TẮT HỒ SƠ BỆNH ÁN","ismultiple":false,"seq": 2},
+      {"formdetails":[],"templateuid":"65ee81eb8598b77515f23110","code":"PC03.KHTH.13.5","name":"CAM ĐOAN CHẤP THUẬN ĐIỀU TRỊ/ PHẪU THUẬT/ THỦ THUẬT","ismultiple":false,"seq": 3},
+      {"formdetails":[],"templateuid":"67763ef58e338a560a7d42b9","code":"PC03.KHTH.18.1","name":"PHIẾU THỦ THUẬT","ismultiple":false,"seq": 4},
+      {"formdetails":[],"templateuid":"66aa005e29269bf174ee415a","code":"PC03.KHTH.27.1","name":"PHIẾU THEO DÕI ĐIỀU TRỊ","ismultiple":true,"seq": 5},
+      {"formdetails":[],"templateuid":"65ee8e80d7aad2459cc4dedf","code":"PC03.KHTH.24.1","name":"PHIẾU ĐÁNH GIÁ TÌNH TRẠNG DINH DƯỠNG DÀNH CHO NGƯỜI BỆNH ≥18 TUỔI, KHÔNG MANG THAI","ismultiple":true,"seq": 6}
+    ]
+  }
+]

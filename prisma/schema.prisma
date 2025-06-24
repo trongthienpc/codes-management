@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../node_modules/@prisma/clients/codes_prisma"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Model cho loại biểu mẫu
+model FormType {
+  id        String   @id @default(cuid())
+  type      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  forms     Form[] // Quan hệ một-nhiều với Form
+}
+
+// Model cho biểu mẫu
+model Form {
+  id          String       @id @default(cuid())
+  templateuid String
+  code        String
+  name        String
+  ismultiple  Boolean      @default(false)
+  seq         Int
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  formTypeId  String
+  formType    FormType     @relation(fields: [formTypeId], references: [id], onDelete: Cascade)
+  formDetails FormDetail[] // Quan hệ một-nhiều với FormDetail
+
+  @@unique([formTypeId, code])
+  @@index([formTypeId])
+}
+
+// Model cho chi tiết biểu mẫu
+model FormDetail {
+  id        String   @id @default(cuid())
+  key       String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  formId    String
+  form      Form     @relation(fields: [formId], references: [id], onDelete: Cascade)
+
+  @@unique([formId, key])
+  @@index([formId])
+}
