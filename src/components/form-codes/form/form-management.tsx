@@ -69,7 +69,7 @@ export function FormManagement() {
   const activeFormType = formTypes.find((type) => type.id === selectedFormType);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
+    <div className="min-h-screen  p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header Section */}
         <div className="flex flex-col space-y-4">
@@ -78,7 +78,7 @@ export function FormManagement() {
               <div className="p-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg">
                 <FileText className="h-6 w-6 text-white" />
               </div>
-              <div>
+              <div className="hidden">
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
                   Quản lý Biểu mẫu
                 </h1>

@@ -397,7 +397,7 @@ export function FormTable({
       </div>
 
       <div className="flex items-center justify-between space-x-2 py-4 px-6 border-t bg-gray-50/30">
-        <div className="flex-1 text-sm text-gray-600">
+        <div className="hidden sm:flex-1 text-sm text-gray-600">
           {table.getFilteredSelectedRowModel().rows.length} /{" "}
           {table.getFilteredRowModel().rows.length}
         </div>

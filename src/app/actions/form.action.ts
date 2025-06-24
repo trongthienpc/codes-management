@@ -1,4 +1,9 @@
 "use server";
+import { findFormTemplateByCode } from "@/lib/mongodb";
+import {
+  QuickUpdateFormData,
+  quickUpdateFormSchema,
+} from "@/lib/schemas/form-codes";
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
@@ -10,10 +15,19 @@ import {
   newCodeUpdateFormSchema,
   updateFormSchema,
 } from "@/lib/schemas/form-codes";
+import { validateRequest } from "@/lib/lucia";
 
 // Tạo mới biểu mẫu
 export async function createForm(data: FormFormData) {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     // Validate dữ liệu đầu vào
     const validated = formSchema.parse(data);
 
@@ -57,6 +71,14 @@ export async function createForm(data: FormFormData) {
 // Cập nhật biểu mẫu
 export async function updateForm(data: UpdateFormFormData) {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     // Validate dữ liệu đầu vào
     const validated = updateFormSchema.parse(data);
     const { id, ...updateData } = validated;
@@ -111,6 +133,14 @@ export async function updateForm(data: UpdateFormFormData) {
 // Xóa biểu mẫu
 export async function deleteForm(id: string) {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     // Kiểm tra tồn tại
     const existing = await prisma.form.findUnique({
       where: { id },
@@ -136,6 +166,14 @@ export async function deleteForm(id: string) {
 // Lấy tất cả biểu mẫu
 export async function getAllForms() {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     const forms = await prisma.form.findMany({
       include: { formType: true },
       orderBy: [{ formType: { type: "asc" } }, { seq: "asc" }],
@@ -156,6 +194,14 @@ export async function getAllForms() {
 // Lấy biểu mẫu theo ID
 export async function getFormById(id: string) {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     const form = await prisma.form.findUnique({
       where: { id },
       include: { formType: true, formDetails: true },
@@ -175,6 +221,14 @@ export async function getFormById(id: string) {
 // Lấy biểu mẫu theo loại
 export async function getFormsByType(formTypeId: string) {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     const forms = await prisma.form.findMany({
       where: { formTypeId },
       include: { formDetails: true, formType: true },
@@ -191,15 +245,17 @@ export async function getFormsByType(formTypeId: string) {
   }
 }
 
-import { findFormTemplateByCode } from "@/lib/mongodb";
-import {
-  QuickUpdateFormData,
-  quickUpdateFormSchema,
-} from "@/lib/schemas/form-codes";
-
 // Cập nhật nhanh form từ MongoDB
 export async function quickUpdateForm(data: QuickUpdateFormData) {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     // Validate dữ liệu đầu vào
     const validated = quickUpdateFormSchema.parse(data);
 
@@ -251,6 +307,14 @@ export async function quickUpdateForm(data: QuickUpdateFormData) {
 // Kiểm tra form tồn tại
 export async function checkFormExists(code: string) {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     // Kiểm tra form đã tồn tại trong PostgreSQL chưa
     const existingForm = await prisma.form.findFirst({
       where: {
@@ -294,6 +358,14 @@ export async function checkFormExists(code: string) {
 // Cập nhật form với code mới
 export async function updateFormWithNewCode(data: NewCodeUpdateFormData) {
   try {
+    // Kiểm tra xác thực
+    const { user } = await validateRequest();
+    if (!user) {
+      return {
+        success: false,
+        message: "Bạn cần đăng nhập để thực hiện thao tác này",
+      };
+    }
     // Validate dữ liệu đầu vào
     const validated = newCodeUpdateFormSchema.parse(data);
 

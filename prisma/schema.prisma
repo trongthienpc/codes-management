@@ -55,3 +55,25 @@ model FormDetail {
   @@unique([formId, key])
   @@index([formId])
 }
+
+model User {
+  id             String    @id @unique
+  username       String    @unique
+  name           String?
+  email          String?   @unique
+  hashedPassword String
+  role           String    @default("user") // user, admin
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  sessions       Session[]
+}
+
+// Model cho phiên đăng nhập
+model Session {
+  id        String   @id @unique
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+
+  @@index([userId])
+}
