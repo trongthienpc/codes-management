@@ -4,8 +4,10 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import {
   FormFormData,
+  NewCodeUpdateFormData,
   UpdateFormFormData,
   formSchema,
+  newCodeUpdateFormSchema,
   updateFormSchema,
 } from "@/lib/schemas/form-codes";
 
@@ -186,5 +188,164 @@ export async function getFormsByType(formTypeId: string) {
       success: false,
       message: "Không thể lấy danh sách biểu mẫu theo loại",
     };
+  }
+}
+
+import { findFormTemplateByCode } from "@/lib/mongodb";
+import {
+  QuickUpdateFormData,
+  quickUpdateFormSchema,
+} from "@/lib/schemas/form-codes";
+
+// Cập nhật nhanh form từ MongoDB
+export async function quickUpdateForm(data: QuickUpdateFormData) {
+  try {
+    // Validate dữ liệu đầu vào
+    const validated = quickUpdateFormSchema.parse(data);
+
+    // Tìm template trong MongoDB
+    const template = await findFormTemplateByCode(validated.code);
+
+    if (!template) {
+      return {
+        success: false,
+        message: `Không tìm thấy biểu mẫu với mã ${validated.code} trong MongoDB`,
+      };
+    }
+
+    // Kiểm tra form đã tồn tại trong PostgreSQL chưa
+    const existingForm = await prisma.form.findFirst({
+      where: {
+        code: validated.code,
+      },
+    });
+
+    if (existingForm) {
+      // Cập nhật form hiện có
+      const updatedForm = await prisma.form.update({
+        where: { id: existingForm.id },
+        data: {
+          name: template.name,
+          templateuid: template._id.toString(),
+        },
+      });
+
+      revalidatePath("/form-codes");
+      return {
+        success: true,
+        data: updatedForm,
+        message: "Cập nhật biểu mẫu thành công",
+      };
+    } else {
+      return {
+        success: false,
+        message: `Không tìm thấy biểu mẫu với mã ${validated.code} trong danh sách`,
+      };
+    }
+  } catch (error) {
+    console.error("Lỗi cập nhật nhanh form:", error);
+    return { success: false, message: "Không thể cập nhật biểu mẫu" };
+  }
+}
+
+// Kiểm tra form tồn tại
+export async function checkFormExists(code: string) {
+  try {
+    // Kiểm tra form đã tồn tại trong PostgreSQL chưa
+    const existingForm = await prisma.form.findFirst({
+      where: {
+        code,
+      },
+    });
+
+    if (!existingForm) {
+      return {
+        success: false,
+        message: `Không tìm thấy biểu mẫu với mã ${code} trong danh sách`,
+      };
+    }
+
+    // Tìm template trong MongoDB
+    const template = await findFormTemplateByCode(code);
+
+    if (!template) {
+      return {
+        success: false,
+        message: `Không tìm thấy biểu mẫu với mã ${code} trong MongoDB`,
+      };
+    }
+
+    // Serialize MongoDB document to plain JavaScript object
+    const serializedTemplate = JSON.parse(JSON.stringify(template));
+
+    return {
+      success: true,
+      data: {
+        existingForm,
+        template: serializedTemplate,
+      },
+    };
+  } catch (error) {
+    console.error("Lỗi kiểm tra form:", error);
+    return { success: false, message: "Không thể kiểm tra biểu mẫu" };
+  }
+}
+
+// Cập nhật form với code mới
+export async function updateFormWithNewCode(data: NewCodeUpdateFormData) {
+  try {
+    // Validate dữ liệu đầu vào
+    const validated = newCodeUpdateFormSchema.parse(data);
+
+    // Kiểm tra form cũ tồn tại
+    const existingForms = await prisma.form.findMany({
+      where: {
+        code: validated.oldCode,
+      },
+    });
+
+    if (existingForms.length === 0) {
+      return {
+        success: false,
+        message: `Không tìm thấy biểu mẫu với mã ${validated.oldCode} trong danh sách`,
+      };
+    }
+
+    // Tìm template mới trong MongoDB
+    const newTemplate = await findFormTemplateByCode(validated.newCode);
+
+    if (!newTemplate) {
+      return {
+        success: false,
+        message: `Không tìm thấy biểu mẫu với mã ${validated.newCode} trong MongoDB`,
+      };
+    }
+
+    // Serialize MongoDB document to plain JavaScript object
+    const serializedTemplate = JSON.parse(JSON.stringify(newTemplate));
+
+    // Cập nhật tất cả các form hiện có có cùng mã code
+    const updatePromises = existingForms.map((form) => {
+      return prisma.form.update({
+        where: { id: form.id },
+        data: {
+          code: validated.newCode,
+          name: serializedTemplate.name,
+          templateuid: serializedTemplate._id.toString(),
+        },
+      });
+    });
+
+    const updatedForms = await Promise.all(updatePromises);
+
+    revalidatePath("/form-codes");
+    return {
+      success: true,
+      data: updatedForms,
+      message: "Cập nhật biểu mẫu thành công",
+    };
+  } catch (error) {
+    console.error("Lỗi cập nhật form với code mới:", error);
+    return { success: false, message: "Không thể cập nhật biểu mẫu" };
   }
 }

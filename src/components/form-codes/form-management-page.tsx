@@ -3,19 +3,29 @@
 import { useState } from "react";
 import { FormManagement } from "./form/form-management";
 import { Button } from "@/components/ui/button";
-import { Import, Layers3, ListTree } from "lucide-react";
+import { Import, Layers3, ListTree, Zap } from "lucide-react";
 import { FormTypeManagementModal } from "./form-type/form-type-management-modal";
 import { ImportExportModal } from "./import-export-modal";
 import { FormDetailManagementModal } from "./form-detail/form-detail-management-modal";
+import { QuickUpdateFormModal } from "./quick-update-form-modal";
 
 export function FormManagementPage() {
   const [isFormTypeModalOpen, setIsFormTypeModalOpen] = useState(false);
   const [isFormDetailModalOpen, setIsFormDetailModalOpen] = useState(false);
   const [isImportExportModalOpen, setIsImportExportModalOpen] = useState(false);
+  const [isQuickUpdateModalOpen, setIsQuickUpdateModalOpen] = useState(false);
 
   return (
     <div className="space-y-6">
       <div className="flex justify-end space-x-4 mb-6">
+        <Button
+          onClick={() => setIsQuickUpdateModalOpen(true)}
+          variant="outline"
+          className="flex items-center gap-2"
+        >
+          <Zap className="h-4 w-4" />
+          Cập nhật nhanh
+        </Button>
         <Button
           onClick={() => setIsFormTypeModalOpen(true)}
           variant="outline"
@@ -57,6 +67,10 @@ export function FormManagementPage() {
       <ImportExportModal
         open={isImportExportModalOpen}
         onOpenChange={setIsImportExportModalOpen}
+      />
+      <QuickUpdateFormModal
+        open={isQuickUpdateModalOpen}
+        onOpenChange={setIsQuickUpdateModalOpen}
       />
     </div>
   );

@@ -22,6 +22,9 @@ import {
   createForm,
   updateForm,
   deleteForm,
+  quickUpdateForm,
+  updateFormWithNewCode,
+  checkFormExists,
 } from "@/app/actions/form.action";
 import {
   getFormDetailsByForm,
@@ -127,6 +130,11 @@ type FormCodesContextType = {
   addForm: (data: FormFormData) => Promise<void>;
   editForm: (data: UpdateFormFormData) => Promise<void>;
   removeForm: (id: string) => Promise<void>;
+  quickUpdate: (code: string) => Promise<void>;
+  checkForm: (
+    code: string
+  ) => Promise<{ success: boolean; data?: any; message?: string }>;
+  updateWithNewCode: (oldCode: string, newCode: string) => Promise<void>;
 
   // Form Detail CRUD
   fetchFormDetails: (formId: string) => Promise<void>;
@@ -294,6 +302,24 @@ export function FormCodesProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  // Hàm cập nhật nhanh
+  const quickUpdate = async (code: string) => {
+    try {
+      startTransition(async () => {
+        const result = await quickUpdateForm({ code });
+        if (result.success) {
+          toast.success(result.message);
+          await mutateForms(); // Refresh data
+        } else {
+          toast.error(result.message);
+        }
+      });
+    } catch (error) {
+      console.error("Lỗi cập nhật nhanh:", error);
+      toast.error("Không thể cập nhật biểu mẫu");
+    }
+  };
+
   // Form Detail CRUD
   const fetchFormDetails = useCallback(
     async (formId: string) => {
@@ -364,6 +390,36 @@ export function FormCodesProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // Hàm kiểm tra form
+  const checkForm = async (code: string) => {
+    try {
+      const result = await checkFormExists(code);
+      return result;
+    } catch (error) {
+      console.error("Lỗi kiểm tra form:", error);
+      toast.error("Không thể kiểm tra biểu mẫu");
+      return { success: false, message: "Không thể kiểm tra biểu mẫu" };
+    }
+  };
+
+  // Hàm cập nhật với code mới
+  const updateWithNewCode = async (oldCode: string, newCode: string) => {
+    try {
+      startTransition(async () => {
+        const result = await updateFormWithNewCode({ oldCode, newCode });
+        if (result.success) {
+          toast.success(result.message);
+          await mutateForms(); // Refresh data
+        } else {
+          toast.error(result.message);
+        }
+      });
+    } catch (error) {
+      console.error("Lỗi cập nhật với code mới:", error);
+      toast.error("Không thể cập nhật biểu mẫu");
+    }
+  };
+
   return (
     <FormCodesContext.Provider
       value={{
@@ -384,6 +440,9 @@ export function FormCodesProvider({ children }: { children: React.ReactNode }) {
         addFormType,
         editFormType,
         removeFormType,
+        quickUpdate,
+        checkForm,
+        updateWithNewCode,
 
         // Form CRUD
         fetchForms,

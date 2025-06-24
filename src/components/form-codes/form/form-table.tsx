@@ -65,7 +65,7 @@ export function FormTable({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
     createdAt: false,
-    code: false,
+    // code: false,
   });
   const [rowSelection, setRowSelection] = useState({});
 

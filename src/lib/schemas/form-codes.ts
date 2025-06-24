@@ -9,12 +9,16 @@ export type FormTypeFormData = z.infer<typeof formTypeSchema>;
 
 // Schema cho Form
 export const formSchema = z.object({
-  templateuid: z.string().min(1, { message: "Template UID không được để trống" }),
+  templateuid: z
+    .string()
+    .min(1, { message: "Template UID không được để trống" }),
   code: z.string().min(1, { message: "Mã biểu mẫu không được để trống" }),
   name: z.string().min(1, { message: "Tên biểu mẫu không được để trống" }),
   ismultiple: z.boolean().default(false),
   seq: z.number().int().nonnegative(),
-  formTypeId: z.string().min(1, { message: "Loại biểu mẫu không được để trống" }),
+  formTypeId: z
+    .string()
+    .min(1, { message: "Loại biểu mẫu không được để trống" }),
 });
 
 export type FormFormData = z.infer<typeof formSchema>;
@@ -42,7 +46,9 @@ export const updateFormSchema = idSchema.merge(formSchema.partial());
 export type UpdateFormFormData = z.infer<typeof updateFormSchema>;
 
 // Schema cho update FormDetail
-export const updateFormDetailSchema = idSchema.merge(formDetailSchema.partial());
+export const updateFormDetailSchema = idSchema.merge(
+  formDetailSchema.partial()
+);
 export type UpdateFormDetailFormData = z.infer<typeof updateFormDetailSchema>;
 
 // Schema cho import/export
@@ -51,12 +57,14 @@ export const formCodesImportSchema = z.array(
     type: z.string(),
     forms: z.array(
       z.object({
-        formdetails: z.array(
-          z.object({
-            key: z.string(),
-            value: z.string(),
-          })
-        ).default([]),
+        formdetails: z
+          .array(
+            z.object({
+              key: z.string(),
+              value: z.string(),
+            })
+          )
+          .default([]),
         templateuid: z.string(),
         code: z.string(),
         name: z.string(),
@@ -68,3 +76,18 @@ export const formCodesImportSchema = z.array(
 );
 
 export type FormCodesImportData = z.infer<typeof formCodesImportSchema>;
+
+// Schema cho cập nhật nhanh form từ MongoDB
+export const quickUpdateFormSchema = z.object({
+  code: z.string().min(1, { message: "Mã biểu mẫu không được để trống" }),
+});
+
+export type QuickUpdateFormData = z.infer<typeof quickUpdateFormSchema>;
+
+// Schema cho nhập code mới
+export const newCodeUpdateFormSchema = z.object({
+  oldCode: z.string().min(1, { message: "Mã biểu mẫu cũ không được để trống" }),
+  newCode: z.string().min(1, { message: "Mã biểu mẫu mới không được để trống" }),
+});
+
+export type NewCodeUpdateFormData = z.infer<typeof newCodeUpdateFormSchema>;
